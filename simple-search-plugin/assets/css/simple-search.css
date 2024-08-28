@@ -1,0 +1,27 @@
+.simple-search-form {
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.simple-search-field {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.simple-search-submit {
+    background-color: #0073aa;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.simple-search-submit:hover {
+    background-color: #005177;
+}
