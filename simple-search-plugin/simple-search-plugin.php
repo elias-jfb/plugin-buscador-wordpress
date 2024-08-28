@@ -174,14 +174,48 @@ function simple_search_init() {
 
         protected function render() {
             $settings = $this->get_settings_for_display();
-            echo '<form role="search" method="get" class="simple-search-form" action="' . home_url( '/' ) . '">';
-            echo '<input type="text" class="simple-search-field" value="' . esc_attr( $settings['search_placeholder'] ) . '" readonly />';
-            echo '</form>';
+
+            // Agregar estilos en línea
+            $inline_styles = '';
+            if ( $settings['form_background_color'] ) {
+                $inline_styles .= sprintf(
+                    '.elementor-element-%s .simple-search-form { background-color: %s; }',
+                    $this->get_id(),
+                    $settings['form_background_color']
+                );
+            }
+
+            if ( $settings['input_background_color'] ) {
+                $inline_styles .= sprintf(
+                    '.elementor-element-%s .simple-search-field { background-color: %s; }',
+                    $this->get_id(),
+                    $settings['input_background_color']
+                );
+            }
+
+            if ( $settings['input_text_color'] ) {
+                $inline_styles .= sprintf(
+                    '.elementor-element-%s .simple-search-field { color: %s; }',
+                    $this->get_id(),
+                    $settings['input_text_color']
+                );
+            }
+
+            // Agregar estilos en línea a la página
+            if ( ! empty( $inline_styles ) ) {
+                echo '<style>' . $inline_styles . '</style>';
+            }
+
+            ?>
+            <form role="search" method="get" class="simple-search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                <input type="text" class="simple-search-field" value="<?php echo esc_attr( $settings['search_placeholder'] ); ?>" readonly />
+            </form>
+            <?php
         }
 
         protected function _content_template() {
             ?>
-            <form role="search" method="get" class="simple-search-form" action="<?php echo home_url( '/' ); ?>">
+            <form role="search" method="get" class="simple-search-form" action="{{{ home_url('/') }}}">
                 <input type="text" class="simple-search-field" value="{{{ settings.search_placeholder }}}" readonly />
             </form>
             <?php
